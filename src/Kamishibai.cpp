@@ -71,6 +71,7 @@ void Kamishibai::jouerSon(String fichier) {
     if (!_player.stopped()) {
         arreterSon();
     }
+    _volumeSon(_volume);
     Serial.print("[Kamishibai] Lecture du fichier ");
     Serial.print(fichier);
     Serial.println(" ...");
@@ -80,31 +81,37 @@ void Kamishibai::jouerSon(String fichier) {
 void Kamishibai::arreterSon() {
     Serial.println("[Kamishibai] Arrêt de la lecture du son !");
     this->_player.stopPlaying();
+    _volumeSon(0);
 }
 
 void Kamishibai::volumeSon(uint8_t pourcent) {
     Serial.print("[Kamishibai] Volume sonore réglé à ");
     Serial.print(pourcent);
     Serial.println("%.");
+    _volume = pourcent;
+    _volumeSon(_volume);
+}
+
+void Kamishibai::_volumeSon(uint8_t pourcent) {
     pourcent = pourcent > 100 ? 100 : pourcent;
     pourcent = pourcent < 0 ? 0 : pourcent;
     uint8_t volume = map(pourcent, 0, 100, 105, 0);
     this->_player.setVolume(volume, volume);
-}
+};
 
 void Kamishibai::lumiereBleu() {
-    lumiere(0, 0, 255);
+    lumiereCouleur(0, 0, 255);
 }
 
 void Kamishibai::lumiereVert() {
-    lumiere(0, 255, 0);
+    lumiereCouleur(0, 255, 0);
 }
 
 void Kamishibai::lumiereRouge() {
-    lumiere(255, 0, 0);
+    lumiereCouleur(255, 0, 0);
 }
 
-void Kamishibai::lumiere(uint8_t r, uint8_t g, uint8_t b) {
+void Kamishibai::lumiereCouleur(uint8_t r, uint8_t g, uint8_t b) {
     analogWrite(R_PIN, r);
     analogWrite(B_PIN, g);
     analogWrite(G_PIN, b);
@@ -122,9 +129,7 @@ void Kamishibai::lumiere(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 void Kamishibai::arreterLumiere() {
-    analogWrite(R_PIN, 0);
-    analogWrite(B_PIN, 0);
-    analogWrite(G_PIN, 0);
+    lumiereCouleur(0, 0, 0);
 }
 
 void Kamishibai::attendreBouton() {
@@ -135,3 +140,5 @@ void Kamishibai::attendreBouton() {
         delay(100);
     }
 }
+
+Kamishibai module;

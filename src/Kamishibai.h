@@ -50,6 +50,19 @@
 #define STRIP_PIN   A0
 #define LED_COUNT   20
 
+#define Demarrer        module.demarrer
+#define LumiereBleu     module.lumiereBleu
+#define LumiereRouge    module.lumiereRouge
+#define LumiereVert     module.lumiereVert
+#define LumiereCouleur  module.lumiereCouleur
+#define ArreterLumiere  module.arreterLumiere
+#define JouerSon        module.jouerSon
+#define ArreterSon      module.arreterSon
+#define VolumeSon       module.volumeSon
+#define AttendreBouton  module.attendreBouton
+
+#define Demarrer     module.demarrer
+
 class Kamishibai {
     public: 
         Kamishibai();
@@ -57,7 +70,7 @@ class Kamishibai {
         void lumiereBleu();
         void lumiereRouge();
         void lumiereVert();
-        void lumiere(uint8_t r, uint8_t g, uint8_t b);
+        void lumiereCouleur(uint8_t r, uint8_t g, uint8_t b);
         void arreterLumiere();
         void jouerSon(String fichier);
         void arreterSon();
@@ -68,7 +81,10 @@ class Kamishibai {
         PololuLedStrip<STRIP_PIN> _strip;
         rgb_color _colors[LED_COUNT];
         bool _started = false;
+        uint8_t _volume = 75;
+        void _volumeSon(uint8_t pourcent);
 
 };
 
+extern Kamishibai module;
 #endif // Kamishibai_hpp
