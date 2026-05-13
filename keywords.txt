@@ -2,16 +2,16 @@
 Kamishibai	KEYWORD1		DATA_TYPE
 
 # Methods and Functions (KEYWORD2)
-demarrer	KEYWORD2
-lumiereBleu	KEYWORD2
-lumiereRouge	KEYWORD2
-lumiereVert	KEYWORD2
-lumiere	KEYWORD2
-arreterLumiere	KEYWORD2
-jouerSon	KEYWORD2
-arreterSon	KEYWORD2
-attendreBouton	KEYWORD2
-volumeSon	KEYWORD2
+Demarrer	KEYWORD2
+LumiereBleu	KEYWORD2
+LumiereRouge	KEYWORD2
+LumiereVert	KEYWORD2
+LumiereCouleur	KEYWORD2
+ArreterLumiere	KEYWORD2
+JouerSon	KEYWORD2
+ArreterSon	KEYWORD2
+AttendreBouton	KEYWORD2
+VolumeSon	KEYWORD2
 
 # Constants (LITERAL1)
 VS1053_RESET	LITERAL1	RESERVED_WORD_2
